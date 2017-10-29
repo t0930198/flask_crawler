@@ -28,7 +28,7 @@ crawler = Crawler()
 def index():
     actid = request.args.get('actid')
     print actid
-    content = crawler.request('381864')
+    content = crawler.request(actid)
     result = crawler.parse(content)
     return (result)
 
