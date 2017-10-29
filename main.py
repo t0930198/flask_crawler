@@ -27,10 +27,13 @@ crawler = Crawler()
 @app.route("/")
 def index():
     actid = request.args.get('actid')
-    print actid
-    content = crawler.request(actid)
-    result = crawler.parse(content)
-    return (result)
+    if actid>0:
+        print actid
+        content = crawler.request(actid)
+        result = crawler.parse(content)
+        return (result)
+    else:
+        return 'Yooooo'
 
 if __name__ == '__main__':
     app.run()
