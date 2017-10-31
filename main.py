@@ -1,4 +1,3 @@
-# coding=UTF-8
 import json
 import requests
 from bs4 import BeautifulSoup
@@ -16,7 +15,8 @@ class Crawler():
         return requests.post(self.baseURL, data=payload).content
     def parse(self, response):
         print(json.loads(response)['content'])
-        return json.dumps(json.loads(response)['content'],sort_keys = True ,indent = 4 )
+        return json.dumps(json.loads(response)['content'],sort_keys = True ,indent = 4, ensure_ascii=False).encode('utf8')
+        # return json.loads(response)['content']
         # json.dumps(response,sort_keys = True ,indent = 4 )
         # soup = BeautifulSoup(response, 'html.parser')
         # yield soup.find_all('div', { "class" : "musicname" })
@@ -24,7 +24,7 @@ class Crawler():
 
 crawler = Crawler()
 
-@app.route("/")
+@app.route("/index")
 def index():
     actid = request.args.get('actid')
     if actid>0:
